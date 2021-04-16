@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon2.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <link rel="apple-touch-icon" href="logo192.png" />
+    <title>虚拟车刀角度测量</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #moudle3D {
+            position: absolute;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+        }
+
+        #root {
+            position: absolute;
+            z-index: 3;
+            width: 100%;
+            height: 100%;
+        }
+
+        #menu {
+            position: absolute;
+            z-index: 14;
+            width: 100%;
+            height: 100%;
+        }
+
+        .label {
+            cursor: pointer;
+        }
+
+        #title {
+            background-color: rgba(0, 255, 255, 0.3);
+            width: 600px;
+            height: 80px;
+            line-height: 80px;
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%, 0 0);
+            border: 2px solid black;
+        }
+
+        #title01 {
+            background-color: rgba(0, 255, 255, 0.219);
+            width: 150px;
+            height: 40px;
+            line-height: 40px;
+            clip-path: polygon(0 0, 78% 0, 98% 100%, 20% 100%, 0 0);
+            border: 2px solid black;
+        }
+
+        #title01:hover {
+            background-color: rgba(0, 183, 255, 0.596);
+        }
+
+        #title02 {
+            background-color: rgba(0, 255, 255, 0.219);
+            width: 150px;
+            height: 40px;
+            line-height: 40px;
+            clip-path: polygon(0 0, 78% 0, 98% 100%, 20% 100%, 0 0);
+            border: 2px solid black;
+        }
+
+        #title02:hover {
+            background-color: rgba(0, 183, 255, 0.596);
+        }
+
+        #title03 {
+            background-color: rgba(0, 255, 255, 0.219);
+            width: 150px;
+            height: 40px;
+            line-height: 40px;
+            clip-path: polygon(21% 0, 100% 0, 78% 100%, 0% 100%, 21% 0);
+            border: 2px solid black;
+        }
+
+        #title03:hover {
+            background-color: rgba(0, 183, 255, 0.596);
+        }
+
+        #title04 {
+            background-color: rgba(0, 255, 255, 0.219);
+            width: 150px;
+            height: 40px;
+            line-height: 40px;
+            clip-path: polygon(22% 0, 100% 0, 78% 100%, 2% 100%, 22% 0);
+            border: 2px solid black;
+        }
+
+        #title04:hover {
+            background-color: rgba(0, 183, 255, 0.596);
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+
+        .mainbody {
+            height: 580px;
+            width: 400px;
+        }
+
+        .middle {
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+        }
+
+        .form-box {
+            width: 100%;
+            height: 100%;
+            background: darkcyan;
+            border-radius: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .btns {
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .input-normal {
+            width: 220px;
+            height: 38px;
+            margin: 0px auto;
+            padding: 0;
+            text-align: center;
+            border-radius: 20px;
+            outline: none;
+            display: block;
+            transition: 0.3s;
+            border: 1px solid #e6e6e6;
+        }
+
+        .btn-submit {
+            width: 100px;
+            height: 36px;
+            font-size: 18px;
+            text-align: center;
+            color: white;
+            border-radius: 20px;
+            display: block;
+            background: darkslategrey;
+            transition: 0.3s;
+        }
+
+        .front {
+            transform: rotateY(0deg);
+        }
+
+        .back {
+            transform: rotateY(-180deg);
+        }
+
+        .front,
+        .back {
+            position: absolute;
+            backface-visibility: hidden;
+            transition: 0.3s linear;
+        }
+
+        .middle-flip .front {
+            transform: rotateY(180deg);
+        }
+
+        .middle-flip .back {
+            transform: rotateY(0deg);
+        }
+
+        p {
+            padding: 0;
+            font-size: 16px;
+            color: white;
+            display: block;
+            text-align: center;
+        }
+
+        a {
+            color: black;
+            cursor: pointer;
+        }
+
+        button {
+            border: 0;
+            outline: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            color: yellow;
+        }
+
+        p,
+        div {
+            user-select: none;
+        }
+
+        /* h3:hover {
+            color: rgb(230, 19, 29);
+        }
+        
+        h3:active {
+            color: rgb(216, 240, 4);
+        } */
+
+        .control {
+            position: absolute;
+            left: 85px;
+            top: 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 13;
+            width: 80px;
+            background-color: rgba(127, 255, 191, 0.582);
+        }
+
+        .table {
+            width: 900px;
+            height: 400px;
+            border: 3px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            z-index: 99999;
+            background-color: white;
+            left: 50%;
+            top: 130%;
+            border-radius: 10px;
+            transition: 0.8s ease-in-out;
+            transform: translate(-50%, -50%);
+        }
+
+        .table-des {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-evenly;
+            height: 40px;
+            background-color: #f8f8f9;
+        }
+
+        .table-des>div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid #e8eaec;
+            border-right: 1px solid #e8eaec;
+            border-bottom: 1px solid #e8eaec;
+            width: 10%;
+            height: 100%;
+        }
+
+        .table-des>div:nth-child(8) {
+            width: 30%;
+        }
+
+        .table-title {
+            width: 100%;
+            height: 50px;
+            font-size: 30px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #table-data {
+            width: 100%;
+            overflow-y: scroll;
+        }
+
+        #table-data::-webkit-scrollbar {
+            display: none;
+        }
+
+        .table-data-item {
+            width: 100%;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            border-bottom: 1px solid #e8eaec;
+        }
+
+        .table-data-item>div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-right: 1px solid #e8eaec;
+            border-bottom: 1px solid #e8eaec;
+            width: 10%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .table-data-item>div:nth-child(8) {
+            width: 30%;
+        }
+
+        .tips {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            font-weight: bold;
+            color: #ccc;
+        }
+
+        .btn-submit {
+            width: 100px;
+            height: 36px;
+            font-size: 18px;
+            text-align: center;
+            color: white;
+            border-radius: 20px;
+            display: block;
+            background: darkslategrey;
+            transition: 0.3s;
+        }
+
+        button {
+            border: 0;
+            outline: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            color: green;
+        }
+
+        .input-data {
+            border: 0;
+            border-bottom: 1px solid black;
+            outline: none;
+        }
+
+        #my-datas {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+            height: 80%;
+        }
+
+        #my-datas>div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        #my-datas>div>div>input {
+            width: 50px;
+            background-color: transparent;
+        }
+
+        #my-datas>div>input {
+            width: 60px;
+            background-color: transparent;
+        }
+
+        #my-datas>div>div {
+            width: 33%;
+            display: flex;
+            text-indent: 10px;
+        }
+
+        .data-title {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            font-size: 30px;
+            font-weight: bold;
+            border-bottom: 3px solid black;
+        }
+
+        .form-data {
+            width: 200px;
+            height: 400px;
+            background-color: white;
+            border-radius: 0 15px 15px 0;
+            border: 2px solid black;
+            position: absolute;
+            z-index: 9;
+            left: 0;
+            top: 20%;
+            transition: 0.6s ease-in-out;
+        }
+
+        input {
+            text-align: center;
+        }
+
+        #tianrui {
+            width: 67% !important;
+            /* justify-content: center; */
+            align-items: center;
+            display: flex;
+        }
+
+        .target {
+            height: 120px;
+            max-width: 200px;
+            filter: url(#goo);
+            text-align: center;
+            position: relative;
+            user-select: none;
+        }
+
+        .share {
+            display: block;
+            width: 64px;
+            line-height: 64px;
+            background-color: #02c1fc;
+            color: rgb(0, 0, 0);
+            border-radius: 50%;
+            margin: auto;
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        [type="checkbox"] {
+            position: absolute;
+            clip: rect(0 0 0 0);
+        }
+
+        [class*="icon-share-"] {
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            background-color: #31e9f0;
+            border-radius: 50%;
+            transition: transform .5s;
+            top: 8px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            text-align: center;
+            transition: transform .5s;
+            transform: scale(0.5);
+            line-height: 48px;
+            color: rgb(8, 8, 8);
+        }
+
+        :checked+.target .icon-share-weibo {
+            transform: scale(1) translate(-70px, 60px);
+            cursor: pointer;
+        }
+
+        :checked+.target .icon-share-wechat {
+            transform: scale(1) translate(0, 75px);
+            cursor: pointer;
+        }
+
+        :checked+.target .icon-share-qq {
+            transform: scale(1) translate(70px, 60px);
+            cursor: pointer;
+        }
+
+        :checked+.target .share {
+            animation: jello 1s;
+        }
+
+        img {
+            margin-top: 8px;
+        }
+
+        @keyframes jello {
+
+            from,
+            11.1%,
+            to {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+
+            22.2% {
+                -webkit-transform: skewX(-12.5deg) skewY(-12.5deg);
+                transform: skewX(-12.5deg) skewY(-12.5deg);
+            }
+
+            33.3% {
+                -webkit-transform: skewX(6.25deg) skewY(6.25deg);
+                transform: skewX(6.25deg) skewY(6.25deg);
+            }
+
+            44.4% {
+                -webkit-transform: skewX(-3.125deg) skewY(-3.125deg);
+                transform: skewX(-3.125deg) skewY(-3.125deg);
+            }
+
+            55.5% {
+                -webkit-transform: skewX(1.5625deg) skewY(1.5625deg);
+                transform: skewX(1.5625deg) skewY(1.5625deg);
+            }
+
+            66.6% {
+                -webkit-transform: skewX(-0.78125deg) skewY(-0.78125deg);
+                transform: skewX(-0.78125deg) skewY(-0.78125deg);
+            }
+
+            77.7% {
+                -webkit-transform: skewX(0.390625deg) skewY(0.390625deg);
+                transform: skewX(0.390625deg) skewY(0.390625deg);
+            }
+
+            88.8% {
+                -webkit-transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
+                transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
+            }
+        }
+
+        .jello {
+            -webkit-animation-name: jello;
+            animation-name: jello;
+            -webkit-transform-origin: center;
+            transform-origin: center;
+        }
+    </style>
+    <script>
+        var logCameraPositiona = document.createEvent("HTMLEvents");
+        logCameraPositiona.initEvent("logCameraPositiona", true, true);
+        window.pdfDiv = logCameraPositiona
+        var updateEvent = document.createEvent("HTMLEvents");
+        updateEvent.initEvent("update", true, true);
+    </script>
+</head>
+
+<body>
+    <div style="width: 100%;height: 100%;position: relative;z-index: 99999;background-color: darkslategrey;" id="mylo">
+        <div class="mainbody middle">
+            <div class="form-box front">
+                <div>
+                    <h1>登录</h1>
+                </div>
+                <div class="btns" id="login-btn">
+                    <input class="input-normal" type="text" id="login-num" placeholder="学号">
+                    <input class="input-normal" type="password" id="login-password" placeholder="密码">
+                    <button class="btn-submit" type="submit" onclick="login()">
+                        LOGIN
+                    </button>
+                </div>
+                <div>
+                    <p style="margin-top: 40px">如果你还没有账号，请</p>
+                    <p>点击这里 <a id="signin" onclick="qiesign()">注册</a></p>
+                </div>
+            </div>
+            <!-- 对的你没看错，上下两个表单基本上没区别，一个front，一个back -->
+            <div class="form-box back">
+                <div>
+                    <h1>注册</h1>
+                </div>
+                <div class="btns">
+                    <input class="input-normal register-input" type="text" id="name" placeholder="姓名">
+                    <input class="input-normal register-input" type="text" id="school" placeholder="学校">
+                    <input class="input-normal register-input" type="text" id="college" placeholder="学院">
+                    <input class="input-normal register-input" type="text" id="class" placeholder="班级">
+                    <input class="input-normal register-input" type="text" id="num" placeholder="学号">
+                    <input class="input-normal register-input" type="password" id="password" placeholder="密码">
+                    <input class="input-normal register-input" type="text" id="tel" placeholder="电话">
+                    <input class="input-normal register-input" type="text" id="email" placeholder="邮箱">
+                    <button class="btn-submit" type="submit" onclick="register()">
+                        Register
+                    </button>
+                </div>
+                <div>
+                    <p style="margin-top: 10px">已经有账号了? 你可以</p>
+                    <p>点击这里 <a id="login" onclick="qielogin()">登录</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="root">
+        <div style="color:rgb(16, 18, 19); position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+        font-family:宋体;
+        font-size:25px;
+        text-align:center;" id="title">
+            <h3>虚拟车刀角度的测量与设计实验平台</h3>
+        </div>
+    </div>
+    <div style="width: 580px; position: absolute;
+    left: 50%;
+    height: 80px;
+    top: 0;
+    z-index: 9;
+    transform: translateX(-50%);">
+        <div style="color:rgb(16, 18, 19); position: absolute;
+        left: -131px;
+        top: 0px;
+        font-size:15px;
+        cursor: pointer;
+        text-align:center;
+        z-index: 14;" name="菜单-实验手册" id="title01" onclick="changeColor('实验手册')">
+            <h3>实验手册</h3>
+        </div>
+        <div style="color:rgb(16, 18, 19); position: absolute;
+        left: -251px;
+        top: 0px;
+        font-size:15px;
+        cursor: pointer;
+        text-align:center;
+        z-index: 14;" name="菜单-操作指南" id="title02" onclick="changeColor('操作指南')">
+            <h3>操作指南</h3>
+        </div>
+        <div style="color:rgb(16, 18, 19); position: absolute;
+        right: -251px;
+        top: 0px;
+        font-size:15px;
+        cursor: pointer;
+        text-align:center;
+        z-index: 14;" name="菜单-虚拟操作" id="title03" onclick="changeColor('虚拟操作')">
+            <h3>虚拟操作</h3>
+        </div>
+        <div style="color:rgb(16, 18, 19); position: absolute;
+        right: -131px;
+        top: 0px;
+        font-size:15px;
+        cursor: pointer;
+        text-align:center;
+        z-index: 14;" name="菜单-三维介绍" id="title04" onclick="changeColor('三维介绍')">
+            <h3>三维介绍 </h3>
+        </div>
+    </div>
+    <div style="position: absolute;z-index: 15;top:4.5%;
+    left: 25%;background-image: url('./pictures/arrowdown.png');width: 32px;height: 32px;"></div>
+    <div id="document-directory" style="position: absolute;background-color: #02cafce1; 
+    width: 10%;height: 20%;left: 0%; top: 10%;
+    z-index: 20;border:2px solid rgb(0, 0, 0);display: none;">
+        <div style="position: relative;font-size: 20px;text-align: center;">文档选择</div>
+        <button style="position: relative;font-size: 15px;transform: translate(30px, 30px);"
+            onclick="changePdf(1)">1.实验ppt</button>
+        <button style="position: relative;font-size: 15px;transform: translate(-28px, 70px);"
+            onclick="changePdf(2)">2.实验文档</button>
+    </div>
+    <div style='background:url(pictures/whutlogo.png); 
+    position:absolute;
+    right:0px;
+    bottom: 40px;
+    height:47px; width:213px;background-size:100% 100%;
+    z-index: 12;'>
+    </div>
+    <div class="control" style="display: none;">
+        <div id="user-name">姓名</div>
+        <div onclick="getData()">显示历史数据</div>
+        <div onclick="sendForm()">提交数据</div>
+        <div style="color: red;cursor: pointer;" onclick="logoout2()">注销</div>
+    </div>
+
+    <div class="table">
+        <div onclick="closeTable()"
+            style="position: absolute;right: 10px;top: 10px;font-size: 30px;cursor: pointer;background-image: url('./pictures/close.png');width: 32px;height: 32px;">
+        </div>
+        <div class="table-title">历史实验数据</div>
+        <div class="table-des">
+            <div><a>序号</a></div>
+            <div><a>型号</a></div>
+            <div><a>前角&#947<sub>0</sub></a></div>
+            <div><a>后角&#945<sub>0</sub></a></div>
+            <div><a>主偏角&#922;r</a></div>
+            <div><a>副偏角&#922;&#39;r</a></div>
+            <div><a>刃倾角&#955;<sub>s</sub></a></div>
+            <div><a>日期</a></div>
+        </div>
+        <div id="table-data">
+        </div>
+    </div>
+
+    <div
+        style="width: 140px;height: 140px;transform: rotate(-45deg);position: absolute;z-index: 9;left: -20px;top: -20px;">
+        <svg width="0" height="0">
+            <defs>
+                <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                        result="goo" />
+                    <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+                </filter>
+            </defs>
+        </svg>
+        <input type="checkbox" id="share">
+        <div class="target">
+            <label class="share" for="share"></label>
+            <span class="icon-share-weibo" title="dskfjhashdjkfhasdkjfhs" onclick="getData()">历史</span>
+            <span class="icon-share-wechat" onclick="sendForm()">提交</span>
+            <span class="icon-share-qq" onclick="logoout2()">注销</span>
+        </div>
+    </div>
+
+    <div class="form-data" style="left: -204px;">
+        <div class="data-title">实验数据</div>
+        <div onclick="closeForm()"
+            style="position: absolute;right: 2px;top: 0px;font-size: 30px;cursor: pointer;background-image: url('./pictures/close.png');width: 32px;height: 32px;">
+        </div>
+        <div id="my-datas">
+            <div>
+                <div>前角:</div>
+                <div><input class="input-data" type="text" id="forward-angle1" maxlength="4">&#176;</div>
+                <div><input class="input-data" type="text" id="forward-angle2" maxlength="2">&#8217</div>
+            </div>
+            <div>
+                <div>后角:</div>
+                <div><input class="input-data" type="text" id="back-angle1" maxlength="4">&#176;</div>
+                <div><input class="input-data" type="text" id="back-angle2" maxlength="2">&#8217</div>
+            </div>
+            <div>
+                <div>副偏角:</div>
+                <div><input class="input-data" type="text" id="lean-angle1" maxlength="4">&#176;</div>
+                <div><input class="input-data" type="text" id="lean-angle2" maxlength="2">&#8217</div>
+            </div>
+            <div>
+                <div>刃倾角:</div>
+                <div><input class="input-data" type="text" id="angle1" maxlength="4">&#176;</div>
+                <div><input class="input-data" type="text" id="angle2" maxlength="2">&#8217</div>
+            </div>
+            <div>
+                <div>主偏角:</div>
+                <div><input class="input-data" type="text" id="main-angle1" maxlength="4">&#176;</div>
+                <div><input class="input-data" type="text" id="main-angle2" maxlength="2">&#8217</div>
+            </div>
+            <div>
+                <div>型号:</div>
+                <div id="tianrui"><input class="input-data" type="text" id="type">号</div>
+            </div>
+
+
+            <button class="btn-submit" type="submit" onclick="sendData()">提交</button>
+        </div>
+    </div>
+
+    <button id="加载时间" type="button" style="background-color:rgba(57, 186, 245, 0);
+    color: rgb(0, 0, 0);
+   font-size: 20px; 
+    position: absolute;right:5px;bottom: 5px;height: 30px;z-index:999;;"></button>
+    <div id='pdfbtn' onclick="closeFrame()"
+        style="z-index:9;position: absolute;right: 200px;top: 50px;font-size: 30px;cursor: pointer;display:none;background-image: url('./pictures/close.png');width: 32px;height: 32px;">
+    </div>
+    <iframe id="pdfDiv" name="pdfDiv" style="display: none;position: absolute;top: 10%; left: 10%;z-index: 11;" src=""
+        frameborder="0" width="80%" height="100%"></iframe>
+    <script src='js/three.js'></script>
+    <script src='js/OrbitControls.js'></script>
+    <script src='js/FBXLoader.js'></script>
+    <script src='js/inflate.min.js'></script>
+    <script src='js/stats.min.js'></script>
+    <script src='js/dat.gui.min.js'></script>
+    <script src='js/DragControls.js'></script>
+    <script src='js/TransformControls.js'></script>
+    <script src='js/CSS3DRenderer.js'></script>
+    <script src="./js/ajax.js"></script>
+
+    <!-- 动画效果 -->
+    <script src="js/Tween.js"></script>
+
+
+    <script src="js/render.js"></script>
+    <script>
+        var jflag = false
+        document.getElementsByClassName('share')[0].addEventListener('click', function () {
+            if (jflag) {
+                document.getElementsByClassName('share')[0].classList.remove('jello')
+                jflag = false
+            } else {
+                document.getElementsByClassName('share')[0].classList.add('jello')
+                jflag = true
+            }
+        })
+
+        function formatData(data) {
+            if (!data) {
+                return data
+            }
+            var newdata = data.split('&')
+
+            return newdata[0] + '&#176;' + newdata[1] + '&#8217'
+        }
+
+        function show_document_directory(state) {
+            if (state) {
+                document.getElementById("document-directory").style.display = 'block';
+            } else {
+                document.getElementById("document-directory").style.display = 'none';
+            }
+        }
+
+        function changePdf(index) {
+            switch (index) {
+                case 1:
+                    document.getElementById("pdfDiv").src = 'web/viewer.html?file=pptManual.pdf';
+                    break;
+                case 2:
+                    document.getElementById("pdfDiv").src = 'web/viewer.html?file=wordManual.pdf';
+                    break;
+                default:
+            }
+
+        }
+
+        function closeTable() {
+            document.getElementsByClassName('table')[0].style.top = '130%'
+        }
+
+        function sendForm() {
+            document.getElementsByClassName('form-data')[0].style.left = 0
+        }
+
+        function closeForm() {
+            document.getElementsByClassName('form-data')[0].style.left = '-204px'
+        }
+
+        function getData() {
+            document.getElementsByClassName('table')[0].style.top = '50%'
+            myAjax({
+                url: "http://192.168.33.182:80/chedao/getData", //请求地址
+                type: "POST", //请求方式
+                data: {
+                    name: sessionStorage.getItem('user'),
+                }, //请求参数
+                success: function (response) {
+                    // 此处放成功后执行的代码
+                    console.log(response)
+                    if (response.length === 0) {
+                        document.getElementById('table-data').innerHTML = '<div class="tips">暂无历史实验数据！</div>'
+                    } else {
+                        var html = ''
+                        for (var d = 0; d < response.length; d++) {
+                            html += '<div class="table-data-item"><div>' + (d + 1) + '</div><div>' + response[d].type + '</div><div>' + formatData(response[d].forward_angle) + '</div><div>' + formatData(response[d].back_angle) + '</div><div>' + formatData(response[d].main_angle) + '</div><div>' + formatData(response[d].lean_angle) + '</div><div>' + formatData(response[d].angle) + '</div><div>' + response[d].date + '</div></div>'
+                        }
+                        document.getElementById('table-data').innerHTML = html
+                    }
+
+                },
+                error: function (status) {
+                    // 此处放失败后执行的代码
+                    console.log(status)
+                }
+            });
+        }
+        var mylo = document.getElementById('mylo')
+        var user_name = document.getElementById('user-name')
+        var user = window.sessionStorage.getItem('user')
+        if (user) {
+            mylo.style.display = 'none'
+            document.getElementsByClassName('share')[0].innerText = user
+        }
+        setInterval(() => {
+            // document.getElementById("加载时间").innerHTML = formatDate();
+        }, 30);
+
+        function logoout() {
+            window.sessionStorage.removeItem('user')
+            window.location.reload()
+        }
+
+        function showControls(state) {
+            var s = document.getElementsByClassName('dg ac');
+
+            if (state) {
+                s[0].style.visibility = "visible";
+            } else {
+                s[0].style.visibility = "hidden";
+            }
+        }
+
+        function showOperationManual(state) {
+            if (state) {
+                document.getElementById("pdfDiv").style.display = "block";
+                document.getElementById("pdfDiv").src = 'web/viewer.html?file=operationManual.pdf';
+            } else {
+                document.getElementById("pdfDiv").style.display = "none";
+            }
+        }
+
+        function showPdf(state) {
+            if (state) {
+                document.getElementById("pdfDiv").style.display = "block";
+                document.getElementById("pdfbtn").style.display = "block";
+                document.getElementById("pdfDiv").src = 'web/viewer.html?file=pptManual.pdf';
+            } else {
+                document.getElementById("pdfDiv").style.display = "none";
+                document.getElementById("pdfbtn").style.display = "none";
+            }
+
+        }
+
+        function closeFrame() {
+            document.getElementById("pdfDiv").style.display = "none";
+            document.getElementById("pdfbtn").style.display = "none";
+        }
+
+        function changeColor(model) {
+            // obj.style.color = "#FFFF00";
+            var models = ["菜单-实验手册", "菜单-操作指南", "菜单-虚拟操作", "菜单-三维介绍"]
+            switch (model) {
+                case "实验手册":
+                    for (var i = 0; i < models.length; i++) {
+                        if (i != 0) {
+                            let x = document.getElementsByName(models[i]);
+                            x[0].style.color = "#000000";
+                        } else {
+                            let x = document.getElementsByName(models[i]);
+                            x[0].style.color = "#ffff00";
+                        }
+                    }
+                    showControls(false);
+                    show_document_directory(true);
+                    showOperationManual(false);
+                    showPdf(true);
+                    break;
+                case "操作指南":
+                    for (var i = 0; i < models.length; i++) {
+                        if (i != 1) {
+                            let x = document.getElementsByName(models[i]);
+                            x[0].style.color = "#000000";
+                        } else {
+                            let x = document.getElementsByName(models[i]);
+                            x[0].style.color = "#ffff00";
+                        }
+                    }
+                    showControls(false);
+                    show_document_directory(false);
+                    showPdf(false);
+                    showOperationManual(true);
+                    document.getElementById("pdfbtn").style.display = "block";
+                    console.log(camera.position);
+                    break;
+                case "虚拟操作":
+                    for (var i = 0; i < models.length; i++) {
+                        if (i != 2) {
+                            let x = document.getElementsByName(models[i]);
+                            x[0].style.color = "#000000";
+                        } else {
+                            let x = document.getElementsByName(models[i]);
+                            x[0].style.color = "#ffff00";
+                        }
+                    }
+                    showControls(true);
+                    show_document_directory(false);
+                    showPdf(false);
+                    camera.position.set(-6100, 120, -200);
+                    controls.target.set(-6100, 120, -500);
+                    controls.update();
+                    break;
+                case "三维介绍":
+                    for (var i = 0; i < models.length; i++) {
+                        if (i != 3) {
+                            let x = document.getElementsByName(models[i]);
+                            x[0].style.color = "#000000";
+                        } else {
+                            let x = document.getElementsByName(models[i]);
+                            x[0].style.color = "#ffff00";
+                        }
+                    }
+                    showControls(false);
+                    show_document_directory(false);
+                    showPdf(false);
+                    camera.position.set(-1000, 200, 300);
+                    controls.target.set(-1000, 20, 0);
+                    controls.update();
+                    break;
+
+            }
+        }
+
+
+
+        function formatDate() {
+            var date = new Date();
+
+            var year = date.getFullYear(),
+                month = date.getMonth() + 1, //月份是从0开始的
+                day = date.getDate(),
+                hour = date.getHours(),
+                min = date.getMinutes(),
+                sec = date.getSeconds();
+            var newTime;
+            if (sec < 10) {
+                newTime = year + '/' +
+                    month + '/' +
+                    day + ' ' +
+                    hour + ':' +
+                    min + ':0' + //格式化时间：2019/7/19 13：27：07
+                    sec;
+            } else {
+                newTime = year + '/' +
+                    month + '/' +
+                    day + ' ' +
+                    hour + ':' +
+                    min + ':' +
+                    sec;
+            }
+            return newTime; //格式化时间：2019/7/19 13：27：25
+        }
+
+        function qiesign() {
+            document.getElementsByClassName("middle")[0].classList.add('middle-flip')
+        }
+
+        function qielogin() {
+            document.getElementsByClassName("middle")[0].classList.remove('middle-flip')
+        }
+
+
+        function $(el) {
+            return document.getElementById(el).value
+        }
+
+        function getTime() {
+            var time = new Date()
+            return time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes()
+        }
+
+        function sendData() {
+            if (!$('forward-angle1') || !$('forward-angle2') || !$('back-angle1') || !$('back-angle2') || !$('lean-angle1') || !$('lean-angle2') || !$('main-angle1') || !$('main-angle2') || !('angle1') || !('angle2') || !$('type')) {
+                alert('提交表单选项不能有空！')
+            } else {
+                myAjax({
+                    url: "http://192.168.33.182:80/chedao/data", //请求地址
+                    type: "POST", //请求方式
+                    data: {
+                        forward_angle: $('forward-angle1') + '&' + $('forward-angle2'),
+                        back_angle: $('back-angle1') + '&' + $('back-angle2'),
+                        lean_angle: $('lean-angle1') + '&' + $('lean-angle2'),
+                        main_angle: $('main-angle1') + '&' + $('main-angle2'),
+                        angle: $('angle1') + '&' + $('angle2'),
+                        date: getTime(),
+                        name: window.sessionStorage.getItem('user'),
+                        num: window.sessionStorage.getItem('num'),
+                        type: $('type'),
+                    },
+                    success: function (response) {
+                        // 此处放成功后执行的代码
+                        console.log(response)
+                        alert(response.message)
+                    },
+                    error: function (status) {
+                        // 此处放失败后执行的代码
+                        console.log(status)
+                    }
+                });
+            }
+
+        }
+
+        function register() {
+            var i,
+                registerbtns = document.getElementsByClassName("register-input");
+            for (i = 0; i < registerbtns.length; i++) {
+                if (!registerbtns[i].value) {
+                    alert('注册选项不能为空！')
+                    return
+                }
+            }
+            myAjax({
+                url: "http://192.168.33.182:80/chedao/register", //请求地址
+                type: "POST", //请求方式
+                data: {
+                    name: $('name'),
+                    school: $('school'),
+                    college: $('college'),
+                    class: $('class'),
+                    password: $('password'),
+                    tel: $('tel'),
+                    email: $('email'),
+                    num: $('num')
+                }, //请求参数
+                success: function (response) {
+                    // 此处放成功后执行的代码
+                    console.log(response)
+                    alert(response.message)
+                },
+                error: function (status) {
+                    // 此处放失败后执行的代码
+                    console.log(status)
+                }
+            });
+        }
+
+
+
+        function login() {
+            // myAjax({
+            //     url: "http://192.168.33.182:80/chedao/login", //请求地址
+            //     type: "POST", //请求方式
+            //     data: {
+            //         password: $('login-password'),
+            //         num: $('login-num')
+            //     }, //请求参数
+            //     success: function(response) {
+            //         // 此处放成功后执行的代码
+            //         console.log(response)
+
+            //         if (response.ok) {
+            //             mylo.style.display = 'none'
+            //             window.sessionStorage.setItem('user', response.name)
+            //             window.sessionStorage.setItem('num', response.num)
+            //             document.getElementsByClassName('share')[0].innerText = response.name
+            //         } else {
+            //             alert(response.message)
+            //         }
+            //     },
+            //     error: function(status) {
+            //         // 此处放失败后执行的代码
+            //         console.log(status)
+            //     }
+            // });
+            mylo.style.display = 'none'
+            window.sessionStorage.setItem('user', '游客')
+            window.sessionStorage.setItem('num', 123)
+            document.getElementsByClassName('share')[0].innerText = "游客"
+        }
+
+        document.addEventListener('keyup', (e) => {
+            console.log(e.keyCode)
+        })
+    </script>
+
+</body>
+
+</html>

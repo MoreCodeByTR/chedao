@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .target {
+        height: 120px;
+        max-width: 200px;
+        filter: url(#goo);
+        text-align: center;
+        position: relative;
+        user-select: none;
+    }
+
+    .share {
+        display: block;
+        width: 64px;
+        line-height: 64px;
+        background-color: #02c1fc;
+        color: rgb(0, 0, 0);
+        border-radius: 50%;
+        margin: auto;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+    }
+
+    [type="checkbox"] {
+        position: absolute;
+        clip: rect(0 0 0 0);
+    }
+
+    [class*="icon-share-"] {
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        background-color: #31e9f0;
+        border-radius: 50%;
+        transition: transform .5s;
+        top: 8px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        text-align: center;
+        transition: transform .5s;
+        transform: scale(0.5);
+        line-height: 48px;
+        color: rgb(8, 8, 8);
+    }
+
+    :checked+.target .icon-share-weibo {
+        transform: scale(1) translate(-70px, 60px);
+        cursor: pointer;
+    }
+
+    :checked+.target .icon-share-wechat {
+        transform: scale(1) translate(0, 75px);
+        cursor: pointer;
+    }
+
+    :checked+.target .icon-share-qq {
+        transform: scale(1) translate(70px, 60px);
+        cursor: pointer;
+    }
+
+    :checked+.target .share {
+        animation: jello 1s;
+    }
+
+    img {
+        margin-top: 8px;
+    }
+
+    @keyframes jello {
+
+        from,
+        11.1%,
+        to {
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+
+        22.2% {
+            -webkit-transform: skewX(-12.5deg) skewY(-12.5deg);
+            transform: skewX(-12.5deg) skewY(-12.5deg);
+        }
+
+        33.3% {
+            -webkit-transform: skewX(6.25deg) skewY(6.25deg);
+            transform: skewX(6.25deg) skewY(6.25deg);
+        }
+
+        44.4% {
+            -webkit-transform: skewX(-3.125deg) skewY(-3.125deg);
+            transform: skewX(-3.125deg) skewY(-3.125deg);
+        }
+
+        55.5% {
+            -webkit-transform: skewX(1.5625deg) skewY(1.5625deg);
+            transform: skewX(1.5625deg) skewY(1.5625deg);
+        }
+
+        66.6% {
+            -webkit-transform: skewX(-0.78125deg) skewY(-0.78125deg);
+            transform: skewX(-0.78125deg) skewY(-0.78125deg);
+        }
+
+        77.7% {
+            -webkit-transform: skewX(0.390625deg) skewY(0.390625deg);
+            transform: skewX(0.390625deg) skewY(0.390625deg);
+        }
+
+        88.8% {
+            -webkit-transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
+            transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
+        }
+    }
+
+    .jello {
+        -webkit-animation-name: jello;
+        animation-name: jello;
+        -webkit-transform-origin: center;
+        transform-origin: center;
+    }
+</style>
+
+<body>
+    <div class="target">
+        <span  title="dskfjhashdjkfhasdkjfhs" onclick="getData()">历史</span>
+        <span  onclick="sendForm()">提交</span>
+        <span onclick="logoout()">注销</span>
+    </div>
+</body>
+
+</html>
