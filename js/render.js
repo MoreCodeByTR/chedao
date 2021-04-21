@@ -519,7 +519,7 @@ function add3dPPT1(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = ' url(./pictures/ppt/ppt1.png)';
+    customDiv.style.background = ' url(pictures/ppt/ppt1.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
@@ -541,7 +541,7 @@ function add3dPPT2(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = ' url(./pictures/ppt/ppt2.png)';
+    customDiv.style.background = ' url(pictures/ppt/ppt2.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
@@ -563,7 +563,7 @@ function add3dPPT3(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = ' url(./pictures/ppt/ppt3.png)';
+    customDiv.style.background = ' url(pictures/ppt/ppt3.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
@@ -585,7 +585,7 @@ function add3dPPT4(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = ' url(./pictures/ppt/ppt4.png)';
+    customDiv.style.background = ' url(pictures/ppt/ppt4.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
@@ -607,7 +607,7 @@ function add3dPPT5(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = ' url(./pictures/ppt/ppt5.png)';
+    customDiv.style.background = ' url(pictures/ppt/ppt5.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
@@ -629,7 +629,7 @@ function add3dPPT6(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = ' url(./pictures/ppt/ppt6.png)';
+    customDiv.style.background = ' url(pictures/ppt/ppt6.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
@@ -651,7 +651,7 @@ function add3dPPT7(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = ' url(./pictures/ppt/ppt7.png)';
+    customDiv.style.background = ' url(pictures/ppt/ppt7.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
@@ -673,7 +673,7 @@ function add3dPPT8(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = ' url(./pictures/ppt/ppt8.png)';
+    customDiv.style.background = ' url(pictures/ppt/ppt8.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
@@ -695,7 +695,7 @@ function add3dPPT9(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = ' url(./pictures/ppt/ppt9.png)';
+    customDiv.style.background = ' url(pictures/ppt/ppt9.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
@@ -717,7 +717,7 @@ function add3dPPT10(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = ' url(./pictures/ppt/ppt10.png)';
+    customDiv.style.background = ' url(pictures/ppt/ppt10.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
@@ -739,7 +739,7 @@ function add3dPPT11(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = ' url(./pictures/ppt/ppt11.png)';
+    customDiv.style.background = ' url(pictures/ppt/ppt11.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
@@ -763,7 +763,7 @@ function add3dPPT12(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = ' url(./pictures/ppt/ppt12.png)';
+    customDiv.style.background = ' url(pictures/ppt/ppt12.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
@@ -787,7 +787,7 @@ function add3dPPT13(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = ' url(./pictures/ppt/ppt13.png)';
+    customDiv.style.background = ' url(pictures/ppt/ppt13.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
@@ -811,7 +811,7 @@ function add3dPPT14(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = ' url(./pictures/ppt/ppt14.png)';
+    customDiv.style.background = ' url(pictures/ppt/ppt14.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
@@ -835,7 +835,7 @@ function add3dPPT15(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = ' url(./pictures/ppt/ppt15.png)';
+    customDiv.style.background = ' url(pictures/ppt/ppt15.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
@@ -859,7 +859,7 @@ function add3dPPT16(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = ' url(./pictures/ppt/ppt16.png)';
+    customDiv.style.background = ' url(pictures/ppt/ppt16.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
@@ -881,7 +881,7 @@ function add3dPPT17(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = 'url(./pictures/ppt/ppt17.png)';
+    customDiv.style.background = 'url(pictures/ppt/ppt17.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
@@ -903,7 +903,7 @@ function add3dPPT18(ID, position, scaleIndex) {
     customDiv.style.marginTop = '-1em';
     customDiv.style.marginTop = '-1em';
     customDiv.style = "height:230px;width:300px; text-align:center;background-color:rgba(0,255,255,0.3); border:solid 2px #0ff;border-radius: 5px 5px 0 0;";
-    customDiv.style.background = 'url(./pictures/ppt/ppt18.png)';
+    customDiv.style.background = 'url(pictures/ppt/ppt18.png)';
     customDiv.style.backgroundRepeat = 'no-repeat';
     customDiv.style.backgroundSize = '100% 90%';
     customDiv.style.color = 'rgb(255,255,0)';
